@@ -80,9 +80,8 @@ public class GrafoGEXF {
 
     // Método para exibir o grafo
     public void exibirGrafo() {
-        for (Map.Entry<Integer, List<Integer>> entry : grafo.entrySet()) {
-            System.out.println("Nó " + entry.getKey() + ": " + entry.getValue());
-        }
+        String graph = g.toString();
+        System.out.println(graph);
     }
 
     public static void main(String[] args) {

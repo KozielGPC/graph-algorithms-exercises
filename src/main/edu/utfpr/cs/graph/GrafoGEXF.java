@@ -11,8 +11,8 @@ public class GrafoGEXF {
     // Estrutura para armazenar o grafo (não dirigido)
     private Graph g;
 
-    public GrafoGEXF() {
-        grafo = new HashMap<>();
+    public GrafoGEXF(String path) {
+        parseGraph(path);
     }
 
     // Método para ler e parsear o arquivo GEXF

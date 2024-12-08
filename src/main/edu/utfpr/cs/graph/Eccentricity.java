@@ -47,6 +47,13 @@ public class Eccentricity {
         }
     }
 
+    /**
+     * Returns max reachable distance given source vertex 'v'
+     * on a unweighted undirected graph.
+     * @param v the source vertex (must be greather than or equal to 0)
+     * @param G a graph of type {@link main.edu.princeton.cs.algs4.Graph Graph}
+     * @return the max reachable distance from source vertex 'v'
+     */
     public static int vertexEccentricity(int v, Graph G) {
         BitSet visited = new BitSet(G.V());
         visited.set(v);

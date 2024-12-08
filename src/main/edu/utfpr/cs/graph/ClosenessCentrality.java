@@ -52,7 +52,7 @@ public class ClosenessCentrality {
 
     private void calculateNormalizedCC() {
         for (int v = 0; v < g.V(); v++) {
-            int sum = 0;
+            float sum = 0;
             
             for (int i = 0; i < g.V(); i++) {
                 sum += dist_matrix[v][i];

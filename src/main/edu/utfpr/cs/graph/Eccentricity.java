@@ -1,11 +1,12 @@
 package main.edu.utfpr.cs.graph;
 
+import java.util.BitSet;
+
 import main.edu.princeton.cs.algs4.Graph;
-import main.edu.princeton.cs.algs4.Queue;
 import main.edu.princeton.cs.algs4.In;
+import main.edu.princeton.cs.algs4.Queue;
 import main.edu.princeton.cs.algs4.StdOut;
 
-import java.util.BitSet;
 
 public class Eccentricity {
 

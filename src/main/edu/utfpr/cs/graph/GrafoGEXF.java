@@ -16,66 +16,48 @@ public class GrafoGEXF {
     }
 
     // Método para ler e parsear o arquivo GEXF
-    public void parseGraph(String arquivo) {
-    try {
-        File fXmlFile = new File(arquivo);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(fXmlFile);
+    public void parseGraph(String path) {
+        try {
+            File fXmlFile = new File(path);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+    
+            // Normalizar o documento XML
+            doc.getDocumentElement().normalize();
+    
+            // Obter os nós
+            NodeList nodeList = doc.getElementsByTagName("node");
 
-        // Normalizar o documento XML
-        doc.getDocumentElement().normalize();
+            g = new Graph(nodeList.getLength());
+    
+            // Obter as arestas
+            NodeList edgeList = doc.getElementsByTagName("edge");
+    
+            // Adicionar as arestas ao grafo
+            for (int i = 0; i < edgeList.getLength(); i++) {
+                Node node = edgeList.item(i);
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
+                    Element elementoEdge = (Element) node;
+                    String sourceStr = elementoEdge.getAttribute("source");
+                    String targetStr = elementoEdge.getAttribute("target");
+    
+                    // Tratar os source e target como double
+                    try {
+                        double source = Double.parseDouble(sourceStr);
+                        double target = Double.parseDouble(targetStr);
 
-        // Obter os nós
-        NodeList nodeList = doc.getElementsByTagName("node");
-
-        // Adicionar os nós ao grafo
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            Node node = nodeList.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element elementoNode = (Element) node;
-                String idStr = elementoNode.getAttribute("id");
-
-                // Tratar o ID como double
-                try {
-                    double id = Double.parseDouble(idStr);
-                    int idInt = (int) Math.floor(id); // Truncar a parte decimal
-                    grafo.putIfAbsent(idInt, new ArrayList<>());
-                } catch (NumberFormatException e) {
-                    System.err.println("ID inválido: " + idStr);
+                        g.addEdge((int) source, (int)target);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Aresta inválida: " + sourceStr + " -> " + targetStr);
+                    }
                 }
             }
+    
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        // Obter as arestas
-        NodeList edgeList = doc.getElementsByTagName("edge");
-
-        // Adicionar as arestas ao grafo
-        for (int i = 0; i < edgeList.getLength(); i++) {
-            Node node = edgeList.item(i);
-            if (node.getNodeType() == Node.ELEMENT_NODE) {
-                Element elementoEdge = (Element) node;
-                String sourceStr = elementoEdge.getAttribute("source");
-                String targetStr = elementoEdge.getAttribute("target");
-
-                // Tratar os source e target como double
-                try {
-                    double source = Double.parseDouble(sourceStr);
-                    double target = Double.parseDouble(targetStr);
-
-                    // Truncar a parte decimal e adicionar as arestas
-                    grafo.get((int) Math.floor(source)).add((int) Math.floor(target));
-                    grafo.get((int) Math.floor(target)).add((int) Math.floor(source));
-                } catch (NumberFormatException e) {
-                    System.err.println("Aresta inválida: " + sourceStr + " -> " + targetStr);
-                }
-            }
-        }
-
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-}
 
 
     // Método para exibir o grafo

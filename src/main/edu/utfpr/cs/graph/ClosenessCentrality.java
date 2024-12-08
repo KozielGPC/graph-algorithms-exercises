@@ -44,7 +44,7 @@ public class ClosenessCentrality {
 
     private void generateDistMatrix() {
         for (int v = 0; v < g.V(); v++) {
-            int[] distances = vertexDistances(v, g); // distance[i] = distance of vertex 'v' to vertex 'i'
+            int[] distances = vertexDistances(v, g); // distances[i] = distance of vertex 'v' to vertex 'i'
 
             dist_matrix[v] = distances;
         }
@@ -103,7 +103,7 @@ public class ClosenessCentrality {
         int dist_matrix[][] = new int[G.V()][G.V()];
 
         for (int v = 0; v < G.V(); v++) {
-            int[] distances = vertexDistances(v, G); // distance[i] = distance of vertex 'v' to vertex 'i'
+            int[] distances = vertexDistances(v, G); // distances[i] = distance of vertex 'v' to vertex 'i'
 
             dist_matrix[v] = distances;
         }

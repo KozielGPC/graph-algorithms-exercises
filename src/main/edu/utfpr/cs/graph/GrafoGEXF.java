@@ -1,7 +1,10 @@
+package main.edu.utfpr.cs.graph;
+
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.*;
-import java.util.*;
+
+import main.edu.princeton.cs.algs4.Graph;
 
 public class GrafoGEXF {
 

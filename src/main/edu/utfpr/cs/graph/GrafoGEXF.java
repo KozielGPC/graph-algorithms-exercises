@@ -66,6 +66,10 @@ public class GrafoGEXF {
         System.out.println(graph);
     }
 
+    public Graph getGraph() {
+        return g;
+    }
+
     public static void main(String[] args) {
         GrafoGEXF grafoGEXF = new GrafoGEXF();
        

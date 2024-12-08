@@ -9,7 +9,7 @@ import main.edu.princeton.cs.algs4.Graph;
 public class GrafoGEXF {
 
     // Estrutura para armazenar o grafo (não dirigido)
-    private Map<Integer, List<Integer>> grafo;
+    private Graph g;
 
     public GrafoGEXF() {
         grafo = new HashMap<>();

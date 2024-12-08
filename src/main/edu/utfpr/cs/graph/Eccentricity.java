@@ -10,7 +10,9 @@ import main.edu.princeton.cs.algs4.StdOut;
 
 public class Eccentricity {
 
-    private int[] eccentricity;    // eccentricity[i] = eccentricity of vertex `i`
+    final private Graph g;
+
+    final private int[] eccentricity;    // eccentricity[i] = eccentricity of vertex `i`
 
     // helper class to keep track of vertex depth in BFS
     private static class Vertex {
@@ -32,8 +34,17 @@ public class Eccentricity {
     }
 
     public Eccentricity(Graph G) {
-        this.eccentricity = new int[G.V()];
-        calculateEccentricity(G);
+        g = G;
+        eccentricity = new int[G.V()];
+        
+        buildGraphEccentricity();
+    }
+
+    // calculate eccentricity for every vertex on graph g
+    private void buildGraphEccentricity() {
+        for (int i = 0; i < g.V(); i++) {
+            eccentricity[i] = vertexEccentricity(i, g);
+        }
     }
 
     public static int vertexEccentricity(int v, Graph G) {
@@ -57,12 +68,6 @@ public class Eccentricity {
         }
 
         return maxDepth;
-    }
-
-    private void calculateEccentricity(Graph G) {
-        for (int i = 0; i < G.V(); i++) {
-            eccentricity[i] = vertexEccentricity(i, G);
-        }
     }
 
     public int[] getEccentricity() {

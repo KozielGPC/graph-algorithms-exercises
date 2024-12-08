@@ -16,7 +16,7 @@ public class GrafoGEXF {
     }
 
     // Método para ler e parsear o arquivo GEXF
-    public void lerGEXF(String arquivo) {
+    public void parseGraph(String arquivo) {
     try {
         File fXmlFile = new File(arquivo);
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

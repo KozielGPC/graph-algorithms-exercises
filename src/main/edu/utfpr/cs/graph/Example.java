@@ -5,7 +5,7 @@ public class Example {
         // Dados de entrada no formato *.gexf
         String filePath = "data/LesMiserables.gexf";
         GrafoGEXF grafoGEXF = new GrafoGEXF(filePath);
-        grafoGEXF.exibirGrafo();
+        grafoGEXF.displayGraph();
 
         // Eccentricity
         System.out.println("\n\nEccentricity");

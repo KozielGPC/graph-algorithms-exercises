@@ -23,5 +23,13 @@ public class Example {
             System.out.println(i + ": " + tmp[i]);
         }
 
+        // Betweeness Centrality
+        System.out.println("\n\nBetweeness Centrality");
+        BetweennessCentrality bc = new BetweennessCentrality(grafoGEXF.getGraph());
+        double[] b = bc.getBCScore();
+        for (int i = 0; i < grafoGEXF.getGraph().V(); i++) {
+            System.out.println(i + ": " + b[i]);
+        }
+
     }
 }
